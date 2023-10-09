@@ -1,0 +1,54 @@
+@model parcial1.Models.Equipo
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Equipo</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Anio)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Anio)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Pais)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Pais)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.GanoEstaFecha)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.GanoEstaFecha)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PrecioEntrada)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PrecioEntrada)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EquipoConsoleId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EquipoConsoleId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
