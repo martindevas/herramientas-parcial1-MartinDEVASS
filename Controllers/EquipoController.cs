@@ -23,10 +23,9 @@ namespace parcial1.Controllers
         public async Task<IActionResult> Index(string filter)
         {
               var query = from equipo in _context.Equipo select equipo; 
-              query = query.Include(x=> x.Console);
               if(!string.IsNullOrEmpty(filter))
               {
-                query = query.Where(x => x.Nombre.ToLower().Contains(filter.ToLower()));
+                query = query.Where(x => x.Nombre.ToLower().Contains(filter.ToLower()) || x.Pais.ToLower().Contains(filter.ToLower()));
               }
               
             var equipoList = await query.ToListAsync(); 
@@ -41,8 +40,7 @@ namespace parcial1.Controllers
                     Anio = item.Anio,
                     Pais = item.Pais,
                     GanoEstaFecha = item.GanoEstaFecha,
-                    PrecioEntrada = item.PrecioEntrada,
-                    ConsoleNombre = item.Console?.Nombre
+                    PrecioEntrada = item.PrecioEntrada
                 });
             }
               
