@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using parcial1.Models;
 
+
 namespace parcial1.Controllers;
 
 public class HomeController : Controller
@@ -14,11 +15,6 @@ public class HomeController : Controller
     }
 
     public IActionResult Index()
-    {
-        return View();
-    }
-
-    public IActionResult Privacy()
     {
         return View();
     }

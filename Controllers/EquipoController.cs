@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using parcial1.Models;
+using parcial1.ViewModels;
 
 namespace parcial1.Controllers
 {
@@ -19,11 +20,31 @@ namespace parcial1.Controllers
         }
 
         // GET: Equipo
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string filter)
         {
-              return _context.Equipo != null ? 
-                          View(await _context.Equipo.ToListAsync()) :
-                          Problem("Entity set 'EquiposFutbolContext.Equipo'  is null.");
+              var query = from equipo in _context.Equipo select equipo; 
+              if(!string.IsNullOrEmpty(filter))
+              {
+                query = query.Where(x => x.Nombre.ToLower().Contains(filter.ToLower()));
+              }
+              
+            var equipoList = await query.ToListAsync(); 
+            var equipoListVM = new EquipoListVM();
+
+            foreach(var item in equipoList)
+            {
+                equipoListVM.Equipos.Add(new EquipoVM
+                {
+                    Id = item.Id,
+                    Nombre = item.Nombre,
+                    Anio = item.Anio,
+                    Pais = item.Pais,
+                    GanoEstaFecha = item.GanoEstaFecha,
+                    PrecioEntrada = item.PrecioEntrada
+                });
+            }
+              
+              return View(equipoListVM);
         }
 
         // GET: Equipo/Details/5
