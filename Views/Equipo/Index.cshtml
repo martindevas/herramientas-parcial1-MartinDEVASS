@@ -5,20 +5,23 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Equipos</h1>
+
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Insertar nuevo equipo</a>
 </p>
 
+<br>
+<br>
 <form method="get" asp-action="Index" asp-controller="Equipo">
     <div class="col-6 form-group mb-2">
         <input class="form-control" asp-for="Filter">
     </div> 
-    <button class="btn btn-primary" type="submit">Buscar</button>
-
+    <button class="btn btn-primary" type="submit">Buscar por equipo o pais</button>
 </form>
-<table class="table">
+<br>
+<table class="table table-success table-striped">
     <thead>
         <tr>
             <th>
