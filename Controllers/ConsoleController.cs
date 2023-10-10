@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using parcial1.Models;
+using parcial1.ViewModels;
 
 namespace parcial1.Controllers
 {
@@ -55,15 +56,21 @@ namespace parcial1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Anio,Pais")] EquipoConsole equipoConsole)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,Anio,Pais")] ConsoleVM equipoConsoleInput)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(equipoConsole);
+                var console = new EquipoConsole
+                {
+                    Nombre = equipoConsoleInput.Nombre,
+                    Anio = equipoConsoleInput.Anio,
+                    Pais = equipoConsoleInput.Pais
+                };
+                _context.Add(console);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(equipoConsole);
+            return View(equipoConsoleInput);
         }
 
         // GET: Console/Edit/5

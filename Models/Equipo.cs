@@ -10,4 +10,6 @@ public class Equipo
     public decimal PrecioEntrada { get; set; }
    
     public int? EquipoConsoleId { get; set; }
+
+    public virtual EquipoConsole Console { get; set; }
 }
